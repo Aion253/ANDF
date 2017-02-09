@@ -97,7 +97,7 @@ public class ANDFNode {
 	/**
 	 * @return A list of this nodes children (sub-nodes).
 	 */
-	public final List<ANDFNode> getChildren() {
+	public List<ANDFNode> getChildren() {
 		return children;
 	}
 	
@@ -144,7 +144,7 @@ public class ANDFNode {
 	/**
 	 * @return The name of this node.
 	 */
-	public final String getNodePathPoint() {
+	public String getNodePathPoint() {
 		return nodePathPoint;
 	}
 	
@@ -164,14 +164,14 @@ public class ANDFNode {
 	/**
 	 * @return The tree to which this node belongs.
 	 */
-	public final ANDFTree getRoot() {
+	public ANDFTree getRoot() {
 		return root;
 	}
 	
 	/**
 	 * @return The number of children (sub-nodes) of this node.
 	 */
-	public final int degree(){
+	public int degree(){
 		return children.size();
 	}
 	
@@ -186,7 +186,7 @@ public class ANDFNode {
 	/**
 	 * @return If this node has no children.
 	 */
-	public final boolean isLeaf(){
+	public boolean isLeaf(){
 		if(children.size() == 0){
 			return true;
 		}
@@ -206,7 +206,7 @@ public class ANDFNode {
 	/**
 	 * @return The value of this node.
 	 */
-	public final String getValue() {
+	public String getValue() {
 		return andfValue;
 	}
 
@@ -215,7 +215,7 @@ public class ANDFNode {
 	 * 
 	 * @param value This node's value.
 	 */
-	public final void setValue(String andfValue) {
+	public void setValue(String andfValue) {
 		this.andfValue = andfValue;
 	}
 

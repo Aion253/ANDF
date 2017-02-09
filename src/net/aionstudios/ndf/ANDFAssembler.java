@@ -23,7 +23,7 @@ public class ANDFAssembler {
 	 * @param andfPath The path of the file to assemble to. Should not include the ANDF extension!
 	 * @return File operation success.
 	 */
-	public final static boolean assemble(ANDFTree tree, String andfPath){
+	public static boolean assemble(ANDFTree tree, String andfPath){
 		List<String> valued = new ArrayList<String>();
 		for(ANDFNode n : tree.getChildren()){
 			getValuedNodes(n, valued);
@@ -31,7 +31,7 @@ public class ANDFAssembler {
 		return output(valued, andfPath);
 	}
 	
-	private final static boolean output(List<String> valued, String andfPath) {
+	private static boolean output(List<String> valued, String andfPath) {
 		PrintWriter writer;
 		try {
 			File f = new File(andfPath+".andf");
@@ -63,7 +63,7 @@ public class ANDFAssembler {
 	 * @param fullPath The entire path of the node, including the node's name.
 	 * @param value The value at this node.
 	 */
-	public final static void setValueAtPath(ANDFTree tree, String fullPath, String value){
+	public static void setValueAtPath(ANDFTree tree, String fullPath, String value){
 		if(fullPath!=null&&fullPath!=""){
 			String[] pathPoint = fullPath.split("\\.", 2);
 			ANDFNode n = tree.addChild(new ANDFNode(pathPoint[0], tree, null));
@@ -79,7 +79,7 @@ public class ANDFAssembler {
 		return;
 	}
 	
-	private final static void valPath(String pathLeft, String value, ANDFNode node){
+	private static void valPath(String pathLeft, String value, ANDFNode node){
 		if(pathLeft!=null&&pathLeft!=""){
 			String[] pathPoint = pathLeft.split("\\.", 2);
 			ANDFNode n = node.addChild(new ANDFNode(pathPoint[0], node.getRoot(), node));
@@ -98,7 +98,7 @@ public class ANDFAssembler {
 	 * @param tree The ANDFTree to get values from.
 	 * @param fullPath The entire path of the node, including the node's name.
 	 */
-	public final static ANDFNode getNodeAtPath(ANDFTree tree, String fullPath){
+	public static ANDFNode getNodeAtPath(ANDFTree tree, String fullPath){
 		if(fullPath!=null&&fullPath!=""){
 			String[] pathPoint = fullPath.split("\\.", 2);
 			ANDFNode n = tree.getChild(pathPoint[0]);
@@ -114,7 +114,7 @@ public class ANDFAssembler {
 		return null;
 	}
 
-	private final static ANDFNode nodeAtPath(String pathLeft, ANDFNode node){
+	private static ANDFNode nodeAtPath(String pathLeft, ANDFNode node){
 		if(pathLeft!=null&&pathLeft!=""){
 			String[] pathPoint = pathLeft.split("\\.", 2);
 			ANDFNode n = node.getChild(pathPoint[0]);
@@ -134,7 +134,7 @@ public class ANDFAssembler {
 	 * @param fullPath The entire path of the node, including the node's name.
 	 * @return true if this node existed and was removed.
 	 */
-	public final static boolean removeNodeAtPath(ANDFTree tree, String fullPath){
+	public static boolean removeNodeAtPath(ANDFTree tree, String fullPath){
 		ANDFNode rem = getNodeAtPath(tree, fullPath);
 		if(rem!=null){
 			if(rem.getParentNode()!=null){
@@ -154,7 +154,7 @@ public class ANDFAssembler {
 	 * @param tree The ANDFTree to test in.
 	 * @param fullPath The entire path of the node, including the node's name.
 	 */
-	public final static boolean doesNodeExist(ANDFTree tree, String fullPath){
+	public static boolean doesNodeExist(ANDFTree tree, String fullPath){
 		if(fullPath!=null&&fullPath!=""){
 			String[] pathPoint = fullPath.split("\\.", 2);
 			for(ANDFNode n : tree.getChildren()){
@@ -174,7 +174,7 @@ public class ANDFAssembler {
 		return false;
 	}
 	
-	private final static boolean nodeChecker(String pathLeft, ANDFNode node){
+	private static boolean nodeChecker(String pathLeft, ANDFNode node){
 		if(pathLeft!=null&&pathLeft!=""){
 			String[] pathPoint = pathLeft.split("\\.", 2);
 			for(ANDFNode n : node.getChildren()){
@@ -191,7 +191,7 @@ public class ANDFAssembler {
 		return false;
 	}
 	
-	private final static List<String> getValuedNodes(ANDFNode node, List<String> valued){
+	private static List<String> getValuedNodes(ANDFNode node, List<String> valued){
 		if(!node.isLeaf()){
 			for(ANDFNode n : node.getChildren()){
 				getValuedNodes(n, valued);

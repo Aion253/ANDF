@@ -19,7 +19,7 @@ public class ANDFParser {
 	 * @param andfPath The path to the ANDF file. Shouldn't include the ANDF extension.
 	 * @return The assembled ANDFTree.
 	 */
-	public final static ANDFTree parse(String andfPath){
+	public static ANDFTree parse(String andfPath){
 		ANDFTree tree = new ANDFTree();
 		andfPath = andfPath + ".andf";
 		try (BufferedReader br = new BufferedReader(new FileReader(andfPath.toString()))) {

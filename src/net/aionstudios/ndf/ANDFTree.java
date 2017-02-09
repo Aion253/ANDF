@@ -22,7 +22,7 @@ public class ANDFTree {
 	/**
 	 * @return The top-level nodes.
 	 */
-	public final List<ANDFNode> getChildren() {
+	public List<ANDFNode> getChildren() {
 		return children;
 	}
 	
@@ -75,14 +75,14 @@ public class ANDFTree {
 	/**
 	 * @return The number of top-level nodes.
 	 */
-	public final int degree(){
+	public int degree(){
 		return children.size();
 	}
 	
 	/**
 	 * @return If this node has no children.
 	 */
-	public final boolean isLeaf(){
+	public boolean isLeaf(){
 		if(children.size() == 0){
 			return true;
 		}
