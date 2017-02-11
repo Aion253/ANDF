@@ -35,5 +35,20 @@ public class ANDFParser {
 		}
 		return tree;
 	}
+	
+	public static void parse(String andfPath, ANDFTree t){
+		ANDFTree tree = new ANDFTree();
+		andfPath = andfPath + ".andf";
+		try (BufferedReader br = new BufferedReader(new FileReader(andfPath.toString()))) {
+		    for (String line; (line = br.readLine()) != null;) {
+		        String[] datas = line.split("=", 2);
+		        System.out.println(line + " " + datas[0] + "=" + datas[1]);
+		        ANDFAssembler.setValueAtPath(t, datas[0], datas[1]);
+		    }
+		    br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

@@ -89,4 +89,66 @@ public class ANDFTree {
 		return false;
 	}
 	
+	/**
+	 * @param path A path within the tree.
+	 * 
+	 * @return The value at the specified path.
+	 */
+	public String getValueAtPath(String path){
+		return ANDFAssembler.getNodeAtPath(this, path).getValue();
+	}
+	
+	/**
+	 * Changes or creates a node's value at the specified path within this tree.
+	 * 
+	 * @param path A path within the tree.
+	 * @param value The value to be inserted.
+	 */
+	public void setValueAtPath(String path, String value){
+		ANDFAssembler.setValueAtPath(this, path, value);
+	}
+	
+	/**
+	 * Removes the node at the specified path within this tree.
+	 * 
+	 * @param path A path within the tree.
+	 */
+	public void removeAtPath(String path){
+		ANDFAssembler.removeNodeAtPath(this, path);
+	}
+	
+	/**
+	 * @param path A path within the tree.
+	 * 
+	 * @return True if a node exists at the specified path within this tree.
+	 */
+	public boolean doesNodeExist(String path){
+		return ANDFAssembler.doesNodeExist(this, path);
+	}
+	
+	/**
+	 * Loads the ANDF data from the specified file.
+	 * 
+	 * @param andfFile The file tom be loaded from.
+	 */
+	public void parseFrom(String andfFile){
+		ANDFParser.parse(andfFile, this);
+	}
+	
+	/**
+	 * Saves this tree to the given file.
+	 * 
+	 * @param andfFile The file to save to.
+	 */
+	public void assembleTo(String andfFile){
+		ANDFAssembler.assemble(this, andfFile);
+	}
+	
+	/**
+	 * Empty's the tree.
+	 */
+	public void emptyTree(){
+		children = new ArrayList<ANDFNode>();
+	}
+	
 }
