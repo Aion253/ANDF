@@ -36,8 +36,14 @@ public class ANDFParser {
 		return tree;
 	}
 	
+	/**
+	 * Reads the file and builds a tree.
+	 * 
+	 * @param andfPath The path to the ANDF file. Shouldn't include the ANDF extension.
+	 * @param t The tree to parse info into.
+	 * @return The assembled ANDFTree.
+	 */
 	public static void parse(String andfPath, ANDFTree t){
-		ANDFTree tree = new ANDFTree();
 		andfPath = andfPath + ".andf";
 		try (BufferedReader br = new BufferedReader(new FileReader(andfPath.toString()))) {
 		    for (String line; (line = br.readLine()) != null;) {
