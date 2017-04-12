@@ -23,10 +23,10 @@ public class ANDFAssembler {
 	 * @param andfPath The path of the file to assemble to. Should not include the ANDF extension!
 	 * @return File operation success.
 	 */
-	public static boolean assemble(ANDFTree tree, String andfPath){
+	public static boolean assemble(ANDFTree tree, String andfPath, int format){
 		List<String> valued = new ArrayList<String>();
 		for(ANDFNode n : tree.getChildren()){
-			getValuedNodes(n, valued);
+			getValuedNodes(n, valued, format);
 		}
 		return output(valued, andfPath);
 	}
@@ -37,13 +37,13 @@ public class ANDFAssembler {
 			File f = new File(andfPath+".andf");
 			File temp = File.createTempFile("temp_andf", null, f.getParentFile());
 			writer = new PrintWriter(temp.toString(), "UTF-8");
-		for(String v : valued){
-			writer.println(v);
-		}
-		writer.close();
-		Files.deleteIfExists(f.toPath());
-		temp.renameTo(f);
-		return true;
+			for(int i = valued.size()-1; i>=0; i--){
+				writer.println(valued.get(i));
+			}
+			writer.close();
+			Files.deleteIfExists(f.toPath());
+			temp.renameTo(f);
+			return true;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return false;
@@ -191,14 +191,27 @@ public class ANDFAssembler {
 		return false;
 	}
 	
-	private static List<String> getValuedNodes(ANDFNode node, List<String> valued){
-		if(!node.isLeaf()){
-			for(ANDFNode n : node.getChildren()){
-				getValuedNodes(n, valued);
+	private static List<String> getValuedNodes(ANDFNode node, List<String> valued, int format){
+		String compiled = "";
+		if(format == 1) {
+			System.out.println(node.getNodeDepth());
+			for(int i = 0; i < node.getNodeDepth(); i++) {
+				compiled += "  ";
 			}
 		}
-		if(node.getValue()!=""&&node.getValue()!=null){
-			valued.add(node.getFullPathToNode()+"="+node.getValue());
+		if(!node.isLeaf()){
+			for(ANDFNode n : node.getChildren()){
+				getValuedNodes(n, valued, format);
+			}
+		}
+		if(node.getValue()!=""&&node.getValue()!=null&&format==0){
+			valued.add(node.getFullPathToNode()+": "+node.getValue());
+		} else if (format==1) {
+			if(node.getValue()!=""&&node.getValue()!=null) {
+				valued.add(compiled+node.getNodePathPoint()+": "+node.getValue());
+			} else {
+				valued.add(compiled+node.getNodePathPoint()+": ");
+			}
 		}
 		return valued;
 	}

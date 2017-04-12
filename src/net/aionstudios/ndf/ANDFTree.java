@@ -131,8 +131,8 @@ public class ANDFTree {
 	 * 
 	 * @param andfFile The file tom be loaded from.
 	 */
-	public void parseFrom(String andfFile){
-		ANDFParser.parse(andfFile, this);
+	public void parseFrom(String andfFile, int format){
+		ANDFParser.parse(andfFile, this, format);
 	}
 	
 	/**
@@ -140,8 +140,8 @@ public class ANDFTree {
 	 * 
 	 * @param andfFile The file to save to.
 	 */
-	public void assembleTo(String andfFile){
-		ANDFAssembler.assemble(this, andfFile);
+	public void assembleTo(String andfFile, int format){
+		ANDFAssembler.assemble(this, andfFile, format);
 	}
 	
 	/**

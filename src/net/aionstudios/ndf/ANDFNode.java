@@ -148,6 +148,22 @@ public class ANDFNode {
 		return nodePathPoint;
 	}
 	
+	public int getNodeDepth() {
+		int depth = 0;
+		if(this.getParentNode()!=null) {
+			return this.getParentNode().extendNodeDepth(depth);
+		}
+		return depth;
+	}
+	
+	private int extendNodeDepth(int depth) {
+		depth++;
+		if(this.getParentNode()!=null) {
+			return this.getParentNode().extendNodeDepth(depth);
+		}
+		return depth;
+	}
+	
 	/**
 	 * Recursively moves through parents to assemble a full path
 	 * 
