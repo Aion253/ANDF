@@ -95,7 +95,11 @@ public class ANDFTree {
 	 * @return The value at the specified path.
 	 */
 	public String getValueAtPath(String path){
-		return ANDFAssembler.getNodeAtPath(this, path).getValue();
+		String value = ANDFAssembler.getNodeAtPath(this, path).getValue();
+		if(value==null) {
+			return "";
+		}
+		return value;
 	}
 	
 	/**

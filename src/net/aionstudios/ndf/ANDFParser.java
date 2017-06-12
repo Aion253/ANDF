@@ -1,6 +1,7 @@
 package net.aionstudios.ndf;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,6 +25,14 @@ public class ANDFParser {
 	public static ANDFTree parse(String andfPath, int format){
 		ANDFTree tree = new ANDFTree();
 		andfPath = andfPath + ".andf";
+		File f = new File(andfPath);
+		f.getParentFile().mkdirs();
+		try {
+			f.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if(format==0) {
 			try (BufferedReader br = new BufferedReader(new FileReader(andfPath.toString()))) {
 			    for (String line; (line = br.readLine()) != null;) {

@@ -35,6 +35,8 @@ public class ANDFAssembler {
 		PrintWriter writer;
 		try {
 			File f = new File(andfPath+".andf");
+			f.getParentFile().mkdirs();
+			f.createNewFile();
 			File temp = File.createTempFile("temp_andf", null, f.getParentFile());
 			writer = new PrintWriter(temp.toString(), "UTF-8");
 			for(int i = valued.size()-1; i>=0; i--){
