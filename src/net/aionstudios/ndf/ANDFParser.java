@@ -86,6 +86,14 @@ public class ANDFParser {
 	 */
 	public static void parse(String andfPath, ANDFTree t, int format){
 		andfPath = andfPath + ".andf";
+		File f = new File(andfPath);
+		f.getParentFile().mkdirs();
+		try {
+			f.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try (BufferedReader br = new BufferedReader(new FileReader(andfPath.toString()))) {
 		    for (String line; (line = br.readLine()) != null;) {
 		        String[] datas = line.split(": ", 2);
