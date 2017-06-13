@@ -38,7 +38,6 @@ public class ANDFTree {
 			}
 		}
 		children.add(node);
-		System.out.println(node);
 		return node;
 	}
 	

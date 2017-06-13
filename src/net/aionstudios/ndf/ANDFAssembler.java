@@ -196,7 +196,6 @@ public class ANDFAssembler {
 	private static List<String> getValuedNodes(ANDFNode node, List<String> valued, int format){
 		String compiled = "";
 		if(format == 1) {
-			System.out.println(node.getNodeDepth());
 			for(int i = 0; i < node.getNodeDepth(); i++) {
 				compiled += "  ";
 			}

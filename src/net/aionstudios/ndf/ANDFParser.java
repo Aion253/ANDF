@@ -37,7 +37,6 @@ public class ANDFParser {
 			try (BufferedReader br = new BufferedReader(new FileReader(andfPath.toString()))) {
 			    for (String line; (line = br.readLine()) != null;) {
 			        String[] datas = line.split(": ", 2);
-			        System.out.println(line + " " + datas[0] + ": " + datas[1]);
 			        ANDFAssembler.setValueAtPath(tree, datas[0], datas[1]);
 			    }
 			    br.close();
@@ -64,7 +63,6 @@ public class ANDFParser {
 			        	//TODO Some problems were occurring... This was a quick and messy fix, but it works!
 			        	compiled = compiled.replace("..", ".");
 			        	compiled = compiled.replace("...", ".");
-			        	System.out.println(line + " " + compiled + ": " + datas[1]);
 				        ANDFAssembler.setValueAtPath(tree, compiled, datas[1]);
 			        }
 			    }
@@ -97,7 +95,6 @@ public class ANDFParser {
 		try (BufferedReader br = new BufferedReader(new FileReader(andfPath.toString()))) {
 		    for (String line; (line = br.readLine()) != null;) {
 		        String[] datas = line.split(": ", 2);
-		        System.out.println(line + " " + datas[0] + ": " + datas[1]);
 		        ANDFAssembler.setValueAtPath(t, datas[0], datas[1]);
 		    }
 		    br.close();
